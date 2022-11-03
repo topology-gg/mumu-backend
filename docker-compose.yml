@@ -11,3 +11,17 @@ services:
     - 27017:27017
     volumes:
     - ./_docker/apibara_mongodb:/data/db
+
+  indexer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command:
+    - start
+    - --mongo-url
+    - "mongodb://apibara:apibara@mongo:27017"
+    environment:
+      PYTHONUNBUFFERED: "1"
+    links:
+    - mongo
