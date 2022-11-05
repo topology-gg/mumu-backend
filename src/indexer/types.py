@@ -55,9 +55,9 @@ class NewSimulation:
             instructions_len = int64_from_iter(it)
             instructions = [int64_from_iter(it) for _ in range(instructions_len)]
             operators_inputs_len = int64_from_iter(it)
-            operators_inputs = [int64_from_iter(it) for _ in range(operators_inputs_len)]
+            operators_inputs = [Grid.from_iter(it) for _ in range(operators_inputs_len)]
             operators_outputs_len = int64_from_iter(it)
-            operators_outputs = [int64_from_iter(it) for _ in range(operators_outputs_len)]
+            operators_outputs = [Grid.from_iter(it) for _ in range(operators_outputs_len)]
             operators_type_len = int64_from_iter(it)
             operators_type = [int64_from_iter(it) for _ in range(operators_type_len)]
             static_cost = int64_from_iter(it)
