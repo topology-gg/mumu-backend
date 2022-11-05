@@ -47,7 +47,7 @@ async def handle_events(info: Info, block_events: NewEvents):
     ]
 
     # Insert multiple documents in one call.
-    await info.storage.insert_many("events", events)
+    await info.storage.insert_many("mumu-s0-events", events)
 
 
 async def run_indexer(server_url=None, mongo_url=None, restart=None):
