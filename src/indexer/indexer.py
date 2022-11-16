@@ -47,7 +47,7 @@ async def handle_events(info: Info, block_events: NewEvents):
     ]
 
     # Insert multiple documents in one call.
-    await info.storage.insert_many("mumu-s0-events", events)
+    await info.storage.insert_many("mumu-s1-events", events)
 
 
 async def run_indexer(server_url=None, mongo_url=None, restart=None):
@@ -73,14 +73,14 @@ async def run_indexer(server_url=None, mongo_url=None, restart=None):
         filters=[
             EventFilter.from_event_name(
                 name="new_simulation",
-                address="0x06fea4edba44e89743f728a0c03bed6bf3cfeb99a43aa6d57c64dffc4d0a2538",
+                address="0x079720113ecedfe20dc470ba4fb6a53c508491ac06768cff255762b0c531f314",
             ),
             EventFilter.from_event_name(
                 name="end_summary",
-                address="0x06fea4edba44e89743f728a0c03bed6bf3cfeb99a43aa6d57c64dffc4d0a2538",
+                address="0x079720113ecedfe20dc470ba4fb6a53c508491ac06768cff255762b0c531f314",
             )
         ],
-        index_from_block=396_137,
+        index_from_block=420459,
     )
 
     print("Initialization completed. Entering main loop.")
