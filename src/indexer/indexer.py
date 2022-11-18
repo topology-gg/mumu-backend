@@ -69,18 +69,19 @@ async def run_indexer(server_url=None, mongo_url=None, restart=None):
     #
     # For now, this also helps the SDK map between human-readable
     # event names and StarkNet events.
+    contract_address = "0x011f59dff553102b442a317350c407266f4af2731063c534d8a25bb84e729342"
     runner.add_event_filters(
         filters=[
             EventFilter.from_event_name(
                 name="new_simulation",
-                address="0x079720113ecedfe20dc470ba4fb6a53c508491ac06768cff255762b0c531f314",
+                address=contract_address,
             ),
             EventFilter.from_event_name(
                 name="end_summary",
-                address="0x079720113ecedfe20dc470ba4fb6a53c508491ac06768cff255762b0c531f314",
+                address=contract_address,
             )
         ],
-        index_from_block=420459,
+        index_from_block=425768,
     )
 
     print("Initialization completed. Entering main loop.")
