@@ -23,6 +23,7 @@ class MechState:
     type: int
     status: int
     index: Grid
+    description: int
 
     @staticmethod
     def from_iter(it: Iterator[bytes]):
@@ -30,9 +31,10 @@ class MechState:
         type = int64_from_iter(it)
         status = int64_from_iter(it)
         index = Grid.from_iter(it)
-        return MechState(id, type, status, index)
+        description = next(it).lstrip(b'\x00').decode("utf-8")
+        return MechState(id, type, status, index, description)
     def to_json(self) -> Any:
-        return {"id": self.id, "type": self.type, "status": self.status, "index": self.index.to_json()}
+        return {"id": self.id, "type": self.type, "status": self.status, "index": self.index.to_json(), "description": self.description}
 
 @dataclass
 class NewSimulation:

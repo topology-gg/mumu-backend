@@ -4,7 +4,7 @@ from starknet_py.contract import FunctionCallSerializer, identifier_manager_from
 from .abis import mech_state_abi, grid_abi, new_simulation_abi, end_summary_abi
 from .types import NewSimulation, EndSummary
 
-indexer_id = "mumu-indexer"
+indexer_id = "mumu_indexer_s2_1"
 
 new_simulation_decoder = FunctionCallSerializer(
     abi=new_simulation_abi,
@@ -36,7 +36,6 @@ def decode(event_ns, event_es):
 
 async def handle_events(info: Info, block_events: NewEvents):
     """Handle a group of events grouped by block."""
-    print(f"Received events for block {block_events.block.number}")
 
     new_simulations = block_events.events[0::2]
     end_summaries = block_events.events[1::2]
@@ -47,7 +46,7 @@ async def handle_events(info: Info, block_events: NewEvents):
     ]
 
     # Insert multiple documents in one call.
-    await info.storage.insert_many("mumu-s1-events", events)
+    await info.storage.insert_many("mumu-s2-events", events)
 
 
 async def run_indexer(server_url=None, mongo_url=None, restart=None):
@@ -69,7 +68,7 @@ async def run_indexer(server_url=None, mongo_url=None, restart=None):
     #
     # For now, this also helps the SDK map between human-readable
     # event names and StarkNet events.
-    contract_address = "0x011f59dff553102b442a317350c407266f4af2731063c534d8a25bb84e729342"
+    contract_address = "0x021317adbb27474f10485c4b866b3d9c94519a455da5b2bf1fe6e35832d901ea"
     runner.add_event_filters(
         filters=[
             EventFilter.from_event_name(
@@ -81,7 +80,7 @@ async def run_indexer(server_url=None, mongo_url=None, restart=None):
                 address=contract_address,
             )
         ],
-        index_from_block=425768,
+        index_from_block=464_138,
     )
 
     print("Initialization completed. Entering main loop.")

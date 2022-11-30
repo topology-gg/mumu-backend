@@ -9,14 +9,15 @@ end_summary_abi = {
     ], }
 
 mech_state_abi = {
-    "name": "MechState",
+    "name": "InputMechState",
     "type": "struct",
-    "size": 5,
+    "size": 6,
     "members": [
             {"name": "id", "offset": 0, "type": "felt"},
             {"name": "type", "offset": 1, "type": "felt"},
-            {"name": "status", "offset": 1, "type": "felt"},
-            {"name": "index", "offset": 1, "type": "Grid"},
+            {"name": "status", "offset": 2, "type": "felt"},
+            {"name": "index", "offset": 3, "type": "Grid"},
+            {"name": "description", "offset": 5, "type": "felt"},
     ],
 }
 
@@ -37,7 +38,7 @@ new_simulation_abi = {
     "outputs": [
             {"name": "solver", "type": "felt"},
             {"name": "mechs_len", "type": "felt"},
-            {"name": "mechs", "type": "MechState*"},
+            {"name": "mechs", "type": "InputMechState*"},
             {"name": "instructions_sets_len", "type": "felt"},
             {"name": "instructions_sets", "type": "felt*"},
             {"name": "instructions_len", "type": "felt"},
