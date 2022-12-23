@@ -31,6 +31,7 @@ def decode(event_ns, event_es):
         operators_inputs=[i.to_json() for i in ns.operators_inputs],
         operators_outputs=[i.to_json() for i in ns.operators_outputs],
         operators_type=ns.operators_type,
+        mechs_volumes=ns.mech_volumes,
         faucets=[i.to_json() for i in ns.faucets],
         sinks=[i.to_json() for i in ns.sinks],
         static_cost=ns.static_cost,
